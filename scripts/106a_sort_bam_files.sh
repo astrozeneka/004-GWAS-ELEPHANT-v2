@@ -52,7 +52,7 @@ genomes=(
 for genome in "${genomes[@]}"
 do
   echo " "
-  echo samtools sort "${MAP_DIRECTORY}/${genome}.bam" \
-    -o "${OUTPUT_DIRECTORY}/${genome}_sorted.sorted"
-  echo samtools index -@ 96 "${OUTPUT_DIRECTORY}/${genome}_sorted.sorted"
+  samtools sort -@ 96 "${MAP_DIRECTORY}/${genome}.bam" \
+    -o "${OUTPUT_DIRECTORY}/${genome}_sorted.bam"
+  samtools index -@ 96 "${OUTPUT_DIRECTORY}/${genome}_sorted.bam"
 done
