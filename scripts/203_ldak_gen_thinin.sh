@@ -7,7 +7,7 @@
 
 source ~/.bashrc
 
-export PLINK_RESULT_DIRECTORY="/tarafs/data/home/hrasoara/proj5034-AGBKU/map_bwa_ema_Ryan/plink_ema_hair"
+export PLINK_RESULT_DIRECTORY="/tarafs/data/home/hrasoara/proj5034-AGBKU/map_bwa_ema_Ryan/plink_ema_hair_chr123"
 
 ldak --cut-weights "./" \
   --bfile "${PLINK_RESULT_DIRECTORY}/snp.hair"
