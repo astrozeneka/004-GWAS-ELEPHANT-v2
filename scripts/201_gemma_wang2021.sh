@@ -5,6 +5,9 @@
 #SBATCH -J gemma_wang2021
 #SBATCH -A proj5034
 
+source ~/.bashrc
+conda activate gemma
+
 export PLINK_RESULT_DIRECTORY="/tarafs/data/home/hrasoara/proj5034-AGBKU/map_bwa_ema_Ryan/plink_ema_hair"
 export PHENO_FILE="/tarafs/data/home/hrasoara/proj5034-AGBKU/map_bwa_ema_Ryan/gemma_hair/pheno.txt"
 # GEMMA OUTPUT DIRECTORY คือ ./output
