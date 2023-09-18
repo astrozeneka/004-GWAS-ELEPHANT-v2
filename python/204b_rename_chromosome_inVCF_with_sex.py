@@ -32,7 +32,7 @@ chromosome_data = [a.split() for a in chromosome_data.split("\n")]
 chromosome_data = {a[1]:a[0] for a in chromosome_data}
 
 if __name__ == '__main__':
-    vcf_data = open("../data/204_VCF/populations.snps.vcf").read().split("\n")
+    vcf_data = open("../data/204_VCF/populations.old.snps.vcf").read().split("\n")
 
     output = []
     for row in vcf_data:
@@ -49,9 +49,9 @@ if __name__ == '__main__':
         if row[0] in chromosome_data:
             row[0] = chromosome_data[row[0]]
             if row[0] == "X":
-                row[0] = "28"
+                row[0] = "x"
             if row[0] == "Y":
-                row[0] = "29"
+                row[0] = "y"
         else:
             print(f"Skip {row[0]}")
             continue
@@ -59,6 +59,6 @@ if __name__ == '__main__':
         output.append(row)
 
     output = "\n".join(output)
-    with open("../data/204_VCF/populations-num.snps.vcf", "w") as f:
+    with open("../data/204_VCF/populations-with-sex.snps.vcf", "w") as f:
         f.write(output)
     print("Done")
