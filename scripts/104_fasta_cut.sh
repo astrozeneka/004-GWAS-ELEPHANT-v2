@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #SBATCH -p compute
 #SBATCH -N 1 -c 1

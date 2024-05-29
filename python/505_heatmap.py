@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 PLINK_FILES="../data/505_plink_extracted/plink_extracted"
 LD_FILE="../data/505_plink_extracted/ld-sq-stats.ld"
@@ -19,11 +20,12 @@ if __name__ == '__main__':
 
     # ทำให้สามเลียมอันบนเป้น 0.0
     mask = pd.DataFrame(np.triu(np.ones(ld.shape), k=1), columns=ld.columns, index=ld.index)
-    ld = ld.where(mask == 0.0, 0.0)
+    ld = ld.where(mask == 0.0, None)
 
     plt.figure(figsize=(9.5, 8))
-    custom_cmap = sns.diverging_palette(250, 10, as_cmap=True)
-    sns.heatmap(ld, cmap=custom_cmap, annot=True, fmt=".1f", linewidths=0.5)
+    # custom_cmap = sns.diverging_palette(250, 10, as_cmap=True)
+    custom_cmap = cm.get_cmap("hot", 1024).reversed()
+    sns.heatmap(ld, cmap=custom_cmap, annot=False, fmt=".1f", linewidths=0)
     plt.title('LD heatmap')
-    plt.show()
+    plt.savefig('ld-heatmap.png')
     print()

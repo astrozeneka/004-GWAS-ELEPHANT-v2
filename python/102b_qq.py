@@ -55,10 +55,10 @@ if __name__ == '__main__':
 
     # พล็อด qq
     plt.figure(figsize=(8, 6))
-    plt.scatter(expected_p_values, [-np.log10(p) for p in p_values], s=5, c='blue', alpha=0.5)
+    plt.scatter(expected_p_values, [-np.log10(p) for p in p_values], s=5, alpha=0.5)
     plt.plot([0, max(expected_p_values)], [0, max(expected_p_values)], linestyle='--', color='red')
     plt.title("QQ-Plot")
     plt.xlabel("Expected -log10(p-value)")
     plt.ylabel("Observed -log10(p-value)")
-    plt.show()
+    plt.savefig(f"../data/102_manhattan/{trait}-qq.png")
     print()

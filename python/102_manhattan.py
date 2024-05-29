@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import seaborn as sns
 
 traits = ["hair", "tusk"]
 
@@ -39,6 +39,7 @@ for i, chr in enumerate(chromosome_data):
     chromosome_data[i][3] = sum([a[2] for a in chromosome_data[:i]])
 chromosome_offset = {a[1]:a[3] for a in chromosome_data}
 
+colors = ['#FF8080', '#8EACCD']
 if __name__ == '__main__':
     for trait in traits:
         snp_data = open(f"../data/101_gemma/{trait}/gemma_lmm1.assoc.txt").read().strip().split("\n")
@@ -53,6 +54,7 @@ if __name__ == '__main__':
         sig_thres = -1 * np.log10(0.05 / len(snp_data))
         pot_thres = -1 * np.log10(1 / len(snp_data))
 
+        color_index = 0
         for chr in chromosome_offset:
             sub_data = [a for a in snp_data if a[0] == chr]
             xy = [[
@@ -61,7 +63,10 @@ if __name__ == '__main__':
             ] for a in sub_data]
             X = [a[0] for a in xy]
             Y = [a[1] for a in xy]
-            plt.scatter(X, Y, s=3)
+            sns.scatterplot(x=X, y=Y, color=colors[color_index])
+            color_index = (color_index + 1) % len(colors)
+            # plt.scatter(X, Y, s=3)
+
         plt.axhline(y=sig_thres, color='red', linewidth=0.3)
         plt.axhline(y=pot_thres, color='blue', linewidth=0.3)
         plt.savefig(f"../data/102_manhattan/{trait}.png")
